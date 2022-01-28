@@ -625,6 +625,10 @@ PROCESS {
     $ScriptRunTime = New-TimeSpan -Start $StartTime -End $EndTime
     Write-EventLog -LogName 'Virtual Desktop Optimization' -Source 'VDOT' -EntryType Information -EventId 1 -Message "VDOT Total Run Time: $($ScriptRunTime.Hours) Hours $($ScriptRunTime.Minutes) Minutes $($ScriptRunTime.Seconds) Seconds"
     Write-Host "`n`nThank you from the Virtual Desktop Optimization Team" -ForegroundColor Cyan
+    
+    # Create detection file for Intune
+    New-Item -ItemType Directory -Path "C:\ScoreUtica\"
+    New-Item -ItemType File -Path "C:\ScoreUtica\VDOTExecuted"
 
     If ($Restart) 
     {
